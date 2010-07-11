@@ -418,7 +418,7 @@ Date:   Tue May 13 11:23:59 2008 +0930
     Xge: replace copyright with standard template from xserver, whitespace fixes.
 
 commit 7e0b3b9029d3d12c9edf961c1d9db4cdbf021f1d
-Merge: c4b0ae9... 9884a41...
+Merge: c4b0ae9 9884a41
 Author: Peter Hutterer <peter@cs.unisa.edu.au>
 Date:   Mon May 12 18:04:09 2008 +0930
 
@@ -452,7 +452,7 @@ Date:   Thu Dec 6 15:51:16 2007 -0500
     Add missing PHONY line for automatic ChangeLog generation
 
 commit c4b0ae960d63f461d6e9efd64f70084f06a674b3
-Merge: d1c9350... 249daf0...
+Merge: d1c9350 249daf0
 Author: Peter Hutterer <peter@cs.unisa.edu.au>
 Date:   Thu Dec 6 14:23:02 2007 +1030
 
@@ -556,7 +556,7 @@ Date:   Tue Oct 24 17:22:34 2006 -0700
     Man page spelling/typo fixes
 
 commit 0bf51bc7ba7c0b6f2540503491b9ec104c1c22d1
-Merge: ee11d4d... a82d7b9...
+Merge: ee11d4d a82d7b9
 Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Tue Oct 24 17:14:45 2006 -0700
 
