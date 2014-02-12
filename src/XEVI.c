@@ -1,4 +1,3 @@
-/* $Xorg: XEVI.c,v 1.3 2000/08/17 19:45:51 cpqbld Exp $ */
 /************************************************************
 Copyright (c) 1997 by Silicon Graphics Computer Systems, Inc.
 Permission to use, copy, modify, and distribute this
@@ -21,9 +20,7 @@ DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
 OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION  WITH
 THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ********************************************************/
-/* $XFree86$ */
-#define NEED_EVENTS
-#define NEED_REPLIES
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -34,7 +31,7 @@ THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #include <X11/extensions/extutil.h>
 #include <X11/Xutil.h>
 static XExtensionInfo *xevi_info;/* needs to move to globals.c */
-static /* const */ char *xevi_extension_name = EVINAME;
+static const char *xevi_extension_name = EVINAME;
 #define XeviCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, xevi_extension_name, val)
 /*****************************************************************************

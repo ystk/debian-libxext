@@ -1,5 +1,4 @@
 /*
- * $Xorg: XShape.c,v 1.4 2001/02/09 02:03:49 xorgcvs Exp $
  *
 Copyright 1989, 1998  The Open Group
 
@@ -25,9 +24,7 @@ in this Software without prior written authorization from The Open Group.
  *
  * Author:  Keith Packard, MIT X Consortium
  */
-/* $XFree86: xc/lib/Xext/XShape.c,v 1.3 2002/10/16 00:37:27 dawes Exp $ */
-#define NEED_EVENTS
-#define NEED_REPLIES
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -41,7 +38,7 @@ in this Software without prior written authorization from The Open Group.
 
 static XExtensionInfo _shape_info_data;
 static XExtensionInfo *shape_info = &_shape_info_data;
-static /* const */ char *shape_extension_name = SHAPENAME;
+static const char *shape_extension_name = SHAPENAME;
 
 #define ShapeCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, shape_extension_name, val)
@@ -73,7 +70,7 @@ static /* const */ XExtensionHooks shape_extension_hooks = {
 };
 
 static XEXT_GENERATE_FIND_DISPLAY (find_display, shape_info,
-				   shape_extension_name, 
+				   shape_extension_name,
 				   &shape_extension_hooks,
 				   ShapeNumberEvents, NULL)
 
@@ -205,7 +202,7 @@ void XShapeCombineRegion(
 
     LockDisplay(dpy);
     GetReq(ShapeRectangles, req);
-    xr = (XRectangle *) 
+    xr = (XRectangle *)
     	_XAllocScratch(dpy, (unsigned long)(r->numRects * sizeof (XRectangle)));
     for (pr = xr, pb = r->rects, i = r->numRects; --i >= 0; pr++, pb++) {
         pr->x = pb->x1;
@@ -357,7 +354,7 @@ Status XShapeQueryExtents (
     XExtDisplayInfo *info = find_display (dpy);
     xShapeQueryExtentsReply	    rep;
     register xShapeQueryExtentsReq *req;
-    
+
     ShapeCheckExtension (dpy, info, 0);
 
     LockDisplay (dpy);
