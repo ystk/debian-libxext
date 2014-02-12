@@ -1,5 +1,4 @@
 /*
- * $Xorg: MITMisc.c,v 1.4 2001/02/09 02:03:49 xorgcvs Exp $
  *
 Copyright 1989, 1998  The Open Group
 
@@ -24,11 +23,9 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
  *
  */
-/* $XFree86: xc/lib/Xext/MITMisc.c,v 1.3 2002/10/16 00:37:27 dawes Exp $ */
 
 /* RANDOM CRUFT! THIS HAS NO OFFICIAL X CONSORTIUM BLESSING */
 
-#define NEED_REPLIES
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -40,7 +37,7 @@ in this Software without prior written authorization from The Open Group.
 
 static XExtensionInfo _mit_info_data;
 static XExtensionInfo *mit_info = &_mit_info_data;
-static /* const */ char *mit_extension_name = MITMISCNAME;
+static const char *mit_extension_name = MITMISCNAME;
 
 #define MITCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, mit_extension_name, val)
@@ -66,7 +63,7 @@ static /* const */ XExtensionHooks mit_extension_hooks = {
     NULL				/* error_string */
 };
 
-static XEXT_GENERATE_FIND_DISPLAY (find_display, mit_info, mit_extension_name, 
+static XEXT_GENERATE_FIND_DISPLAY (find_display, mit_info, mit_extension_name,
 				   &mit_extension_hooks, MITMiscNumberEvents,
 				   NULL)
 

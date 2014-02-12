@@ -45,12 +45,15 @@ libXext.so.6 libxext6 #MINVER#
  XShmQueryExtension@Base 0
  XShmQueryVersion@Base 0
  XSyncAwait@Base 0
+ XSyncAwaitFence@Base 2:1.3.0
  XSyncChangeAlarm@Base 0
  XSyncChangeCounter@Base 0
  XSyncCreateAlarm@Base 0
  XSyncCreateCounter@Base 0
+ XSyncCreateFence@Base 2:1.3.0
  XSyncDestroyAlarm@Base 0
  XSyncDestroyCounter@Base 0
+ XSyncDestroyFence@Base 2:1.3.0
  XSyncFreeSystemCounterList@Base 0
  XSyncGetPriority@Base 0
  XSyncInitialize@Base 0
@@ -62,8 +65,11 @@ libXext.so.6 libxext6 #MINVER#
  XSyncQueryAlarm@Base 0
  XSyncQueryCounter@Base 0
  XSyncQueryExtension@Base 0
+ XSyncQueryFence@Base 2:1.3.0
+ XSyncResetFence@Base 2:1.3.0
  XSyncSetCounter@Base 0
  XSyncSetPriority@Base 0
+ XSyncTriggerFence@Base 2:1.3.0
  XSyncValueAdd@Base 0
  XSyncValueEqual@Base 0
  XSyncValueGreaterOrEqual@Base 0

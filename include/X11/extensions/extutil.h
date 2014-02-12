@@ -1,5 +1,4 @@
 /*
- * $Xorg: extutil.h,v 1.4 2001/02/09 02:03:24 xorgcvs Exp $
  *
 Copyright 1989, 1998  The Open Group
 
@@ -24,14 +23,13 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
  *
  * Author:  Jim Fulton, MIT The Open Group
- * 
+ *
  *                     Xlib Extension-Writing Utilities
  *
  * This package contains utilities for writing the client API for various
  * protocol extensions.  THESE INTERFACES ARE NOT PART OF THE X STANDARD AND
  * ARE SUBJECT TO CHANGE!
  */
-/* $XFree86: xc/include/extensions/extutil.h,v 1.9 2001/12/14 19:53:28 dawes Exp $ */
 
 #ifndef _EXTUTIL_H_
 #define _EXTUTIL_H_
@@ -125,7 +123,7 @@ extern void XextDestroyExtension(
 extern XExtDisplayInfo *XextAddDisplay(
     XExtensionInfo*	/* extinfo */,
     Display*		/* dpy */,
-    char*		/* ext_name */,
+    _Xconst char*	/* ext_name */,
     XExtensionHooks*	/* hooks */,
     int			/* nevents */,
     XPointer		/* data */
@@ -149,7 +147,7 @@ extern XExtDisplayInfo *XextFindDisplay(
 /*
  * helper macros to generate code that is common to all extensions; caller
  * should prefix it with static if extension source is in one file; this
- * could be a utility function, but have to stack 6 unused arguments for 
+ * could be a utility function, but have to stack 6 unused arguments for
  * something that is called many, many times would be bad.
  */
 #define XEXT_GENERATE_FIND_DISPLAY(proc,extinfo,extname,hooks,nev,data) \

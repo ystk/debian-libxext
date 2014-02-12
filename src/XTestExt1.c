@@ -1,4 +1,3 @@
-/* $Xorg: XTestExt1.c,v 1.4 2001/02/09 02:03:49 xorgcvs Exp $ */
 /*
  *	File:  xtestext1lib.c
  *
@@ -42,8 +41,8 @@ documentation, and that the name of Hewlett-Packard not be used in
 advertising or publicity pertaining to distribution of the
 software without specific, written prior permission.
 
-Hewlett-Packard makes no representations about the 
-suitability of this software for any purpose.  It is provided 
+Hewlett-Packard makes no representations about the
+suitability of this software for any purpose.  It is provided
 "as is" without express or implied warranty.
 
 This software is not subject to any license of the American
@@ -51,14 +50,10 @@ Telephone and Telegraph Company or of the Regents of the
 University of California.
 
 */
-/* $XFree86: xc/lib/Xext/XTestExt1.c,v 1.3 2001/01/17 19:42:46 dawes Exp $ */
 
 /******************************************************************************
  * include files
  *****************************************************************************/
-
-#define NEED_REPLIES
-#define NEED_EVENTS
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -152,7 +147,7 @@ int			action_list_size,
  * input action buffer is empty
  */
 int			ack_flag)
-{	
+{
 	/*
 	 * pointer to xTestFakeInputReq structure
 	 */
@@ -167,7 +162,7 @@ int			ack_flag)
 	    (action_list_size > XTestMAX_ACTION_LIST_SIZE))
 	{
 		/*
-		 * if the extension is not installed in the server or the 
+		 * if the extension is not installed in the server or the
 		 * action list will not fit in the request, then unlock
 		 * the display and return -1.
 		 */
@@ -184,7 +179,7 @@ int			ack_flag)
 		 *
 		 * GetReq is a macro defined in Xlibint.h.
 		 */
-		GetReq(TestFakeInput, req);		
+		GetReq(TestFakeInput, req);
 		/*
 		 * fix up the request type code to what is needed
 		 */
@@ -237,7 +232,7 @@ register Display	*dpy,
  * tells the server what to do with the user input actions
  */
 int			action_handling)
-{	
+{
 	/*
 	 * pointer to xTestGetInputReq structure
 	 */
@@ -263,7 +258,7 @@ int			action_handling)
 		 *
 		 * GetReq is a macro defined in Xlibint.h.
 		 */
-		GetReq(TestGetInput, req);		
+		GetReq(TestGetInput, req);
 		/*
 		 * fix up the request type code to what is needed
 		 */
@@ -295,7 +290,7 @@ XTestStopInput(
  * the connection to the X server
  */
 register Display	*dpy)
-{	
+{
 	/*
 	 * pointer to xTestStopInputReq structure
 	 */
@@ -321,7 +316,7 @@ register Display	*dpy)
 		 *
 		 * GetReq is a macro defined in Xlibint.h.
 		 */
-		GetReq(TestStopInput, req);		
+		GetReq(TestStopInput, req);
 		/*
 		 * fix up the request type code to what is needed
 		 */
@@ -349,7 +344,7 @@ XTestReset(
  * the connection to the X server
  */
 register Display	*dpy)
-{	
+{
 	/*
 	 * pointer to xTestReset structure
 	 */
@@ -375,7 +370,7 @@ register Display	*dpy)
 		 *
 		 * GetReq is a macro defined in Xlibint.h.
 		 */
-		GetReq(TestReset, req);		
+		GetReq(TestReset, req);
 		/*
 		 * fix up the request type code to what is needed
 		 */
@@ -407,7 +402,7 @@ register Display	*dpy,
  * server's input action buffer
  */
 unsigned long		*size_return)
-{	
+{
 	/*
 	 * pointer to xTestQueryInputSize structure
 	 */
@@ -437,7 +432,7 @@ unsigned long		*size_return)
 		 *
 		 * GetReq is a macro defined in Xlibint.h.
 		 */
-		GetReq(TestQueryInputSize, req);		
+		GetReq(TestQueryInputSize, req);
 		/*
 		 * fix up the request type code to what is needed
 		 */
@@ -476,7 +471,7 @@ register Display	*dpy)
 	/*
 	 * if the extension has not been initialized, then do so
 	 */
-	if (!XTestReqCode) 
+	if (!XTestReqCode)
 	{
 		return(XTestInitExtension(dpy));
 	}
@@ -523,7 +518,7 @@ register Display	*dpy)
 	 */
 	XTestReqCode = ret->major_opcode;
 	/*
-	 * set up the event handler for any events from 
+	 * set up the event handler for any events from
 	 * this extension
 	 */
 	for (i = 0; i < XTestEVENT_COUNT; i++)
@@ -737,7 +732,7 @@ unsigned int	action)
 			return(-1);
 		}
 		/*
-		 * create the header 
+		 * create the header
 		 */
 		keyinfo.header = XTestPackDeviceID(device_id) |
 				 XTestKEY_ACTION |
@@ -770,7 +765,7 @@ unsigned int	action)
 			return(-1);
 		}
 		/*
-		 * create the header 
+		 * create the header
 		 */
 		keyinfo.header = XTestPackDeviceID(device_id) |
 				 XTestKEY_ACTION |
@@ -1143,7 +1138,7 @@ int	action_size)
 	/*
 	 * We have to write input actions to the server.  If the server's
 	 * input action capacity will be reached, then ask for an
-	 * acknowledge event when the server has processed all of the 
+	 * acknowledge event when the server has processed all of the
 	 * input actions.  Otherwise, an acknowledge event is not needed.
 	 */
 	if (action_count >= action_array_size)

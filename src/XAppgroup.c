@@ -1,4 +1,3 @@
-/* $XFree86: xc/lib/Xext/XAppgroup.c,v 1.11 2002/10/16 02:19:22 dawes Exp $ */
 /*
 
 Copyright 1996, 1998  The Open Group
@@ -24,7 +23,6 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
 
 */
-/* $Xorg: XAppgroup.c,v 1.5 2001/02/09 02:03:49 xorgcvs Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -33,8 +31,6 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xwindows.h>
 #endif
 
-#define NEED_EVENTS
-#define NEED_REPLIES
 #include <X11/Xlibint.h>
 #include <X11/extensions/Xag.h>
 #include <X11/extensions/agproto.h>
@@ -56,7 +52,7 @@ struct xagstuff {
 
 static XExtensionInfo _xag_info_data;
 static XExtensionInfo *xag_info = &_xag_info_data;
-static char *xag_extension_name = XAGNAME;
+static const char *xag_extension_name = XAGNAME;
 
 #define XagCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, xag_extension_name, val)
@@ -82,9 +78,9 @@ static /* const */ XExtensionHooks xag_extension_hooks = {
     NULL,				/* error_string */
 };
 
-static XEXT_GENERATE_FIND_DISPLAY (find_display, xag_info, 
-				   xag_extension_name, 
-				   &xag_extension_hooks, 
+static XEXT_GENERATE_FIND_DISPLAY (find_display, xag_info,
+				   xag_extension_name,
+				   &xag_extension_hooks,
 				   0, NULL)
 
 static XEXT_GENERATE_CLOSE_DISPLAY (close_display, xag_info)
@@ -161,7 +157,7 @@ StuffToWire (Display *dpy, struct xagstuff *stuff, xXagCreateReq *req)
     Data32 (dpy, (long*) values, (long) nvalues);
 }
 
-Bool 
+Bool
 XagCreateEmbeddedApplicationGroup(
     Display* dpy,
     VisualID root_visual,
@@ -182,7 +178,7 @@ XagCreateEmbeddedApplicationGroup(
     stuff.default_root = RootWindow (dpy, DefaultScreen(dpy));
     stuff.root_visual = root_visual;
     stuff.default_colormap = default_colormap;
-    stuff.attrib_mask = 
+    stuff.attrib_mask =
 	XagAppGroupLeaderMask | XagSingleScreenMask | XagDefaultRootMask |
 	XagRootVisualMask | XagDefaultColormapMask;
     if (default_colormap != None) {
@@ -202,7 +198,7 @@ XagCreateEmbeddedApplicationGroup(
     return True;
 }
 
-Bool 
+Bool
 XagCreateNonembeddedApplicationGroup(
     Display* dpy,
     XAppGroup* app_group_return)
@@ -362,7 +358,7 @@ XagCreateAssociation(Display* dpy, Window* window_return, void* system_window)
     /* other platforms go here */
 
     /* this whole thing could be arranged better, but since X need
-     * only short-circuit the protocol and WIN32 is the only other 
+     * only short-circuit the protocol and WIN32 is the only other
      * platform the XC supports, it will suffice for now.
      */
     *window_return = *(Window*)system_window;

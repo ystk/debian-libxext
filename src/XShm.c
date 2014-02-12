@@ -1,6 +1,4 @@
-/* $XdotOrg: $ */
 /*
- * $Xorg: XShm.c,v 1.4 2001/02/09 02:03:49 xorgcvs Exp $
  *
 Copyright 1989, 1998  The Open Group
 
@@ -26,12 +24,9 @@ in this Software without prior written authorization from The Open Group.
  *
  * Author:  Bob Scheifler and Keith Packard, MIT X Consortium
  */
-/* $XFree86: xc/lib/Xext/XShm.c,v 1.6 2002/10/16 02:19:22 dawes Exp $ */
 
 /* THIS IS NOT AN X CONSORTIUM STANDARD OR AN X PROJECT TEAM SPECIFICATION */
 
-#define NEED_EVENTS
-#define NEED_REPLIES
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -45,7 +40,7 @@ in this Software without prior written authorization from The Open Group.
 
 static XExtensionInfo _shm_info_data;
 static XExtensionInfo *shm_info = &_shm_info_data;
-static /* const */ char *shm_extension_name = SHMNAME;
+static const char *shm_extension_name = SHMNAME;
 
 #define ShmCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, shm_extension_name, val)
@@ -75,11 +70,11 @@ static /* const */ XExtensionHooks shm_extension_hooks = {
     error_string,			/* error_string */
 };
 
-static /* const */ char *shm_error_list[] = {
+static const char *shm_error_list[] = {
     "BadShmSeg",			/* BadShmSeg */
 };
 
-static XEXT_GENERATE_FIND_DISPLAY (find_display, shm_info, shm_extension_name, 
+static XEXT_GENERATE_FIND_DISPLAY (find_display, shm_info, shm_extension_name,
 				   &shm_extension_hooks, ShmNumberEvents, NULL)
 
 static XEXT_GENERATE_CLOSE_DISPLAY (close_display, shm_info)
@@ -228,7 +223,7 @@ int XShmPixmapFormat(Display *dpy)
 }
 
 
-Status XShmAttach(Display *dpy, XShmSegmentInfo *shminfo)
+Bool XShmAttach(Display *dpy, XShmSegmentInfo *shminfo)
 {
     XExtDisplayInfo *info = find_display (dpy);
     register xShmAttachReq *req;
@@ -248,7 +243,7 @@ Status XShmAttach(Display *dpy, XShmSegmentInfo *shminfo)
 }
 
 
-Status XShmDetach(Display *dpy, XShmSegmentInfo *shminfo)
+Bool XShmDetach(Display *dpy, XShmSegmentInfo *shminfo)
 {
     XExtDisplayInfo *info = find_display (dpy);
     register xShmDetachReq *req;
@@ -317,7 +312,7 @@ XImage *XShmCreateImage (
     return image;
 }
 
-Status XShmPutImage (
+Bool XShmPutImage (
     register Display *dpy,
     Drawable d,
     GC gc,
@@ -359,7 +354,7 @@ Status XShmPutImage (
 }
 
 
-Status XShmGetImage(
+Bool XShmGetImage(
     register Display *dpy,
     Drawable d,
     XImage *image,

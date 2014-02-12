@@ -12,6 +12,7 @@ libXext_la_LDFLAGS = -version-number $(XEXT_SOREV) -no-undefined
 libXext_la_LIBADD = $(XEXT_LIBS)
 
 libXext_la_SOURCES = \
+	eat.h \
 	DPMS.c \
 	MITMisc.c \
 	XAppgroup.c \
@@ -32,9 +33,6 @@ libXext_la_SOURCES = \
 libXextincludedir = $(includedir)/X11/extensions
 libXextinclude_HEADERS = $(top_srcdir)/include/X11/extensions/dpms.h \
 			 $(top_srcdir)/include/X11/extensions/extutil.h \
-			 $(top_srcdir)/include/X11/extensions/lbxbuf.h \
-			 $(top_srcdir)/include/X11/extensions/lbxbufstr.h \
-			 $(top_srcdir)/include/X11/extensions/lbximage.h \
 			 $(top_srcdir)/include/X11/extensions/MITMisc.h \
 			 $(top_srcdir)/include/X11/extensions/multibuf.h \
 			 $(top_srcdir)/include/X11/extensions/security.h \
@@ -64,5 +62,5 @@ lintlibdir = $(libdir)
 lintlib_DATA = $(LINTLIB)
 
 $(LINTLIB): $(libXext_la_SOURCES)
-	$(LINT) -y -oXext -x $(ALL_LINT_FLAGS) $(libXext_la_SOURCES) 
+	$(LINT) -y -oXext -x $(ALL_LINT_FLAGS) $(libXext_la_SOURCES)
 endif MAKE_LINT_LIB

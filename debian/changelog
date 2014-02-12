@@ -1,3 +1,89 @@
+libxext (2:1.3.1-2+deb7u1) wheezy-security; urgency=high
+
+  * integer overflows calculating memory needs for replies [CVE-2013-1982]
+
+ -- Julien Cristau <jcristau@debian.org>  Tue, 14 May 2013 00:46:19 +0200
+
+libxext (2:1.3.1-2) unstable; urgency=low
+
+  * Split docs out to a separate libxext-doc package.  libxext-dev is now
+    Multi-Arch: same, and libxext-doc Multi-Arch: foreign.
+  * Adjust debian/rules so buildds don't have to build the specs.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 15 Apr 2012 21:07:20 +0200
+
+libxext (2:1.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump xorg-sgml-doctools build-dep per configure.ac.
+  * Adjust rules for new location of .db files, and set docdir in configure
+    call.
+  * Don't require (fake)root for debian/rules clean.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 15 Apr 2012 20:46:06 +0200
+
+libxext (2:1.3.0-3) unstable; urgency=low
+
+  * Team upload.
+  * Don't put debug symbols for the udeb in libxdmcp6-dbg.
+  * Add build-indep and build-arch debian/rules targets.
+
+ -- Julien Cristau <jcristau@debian.org>  Sun, 12 Jun 2011 00:10:43 +0200
+
+libxext (2:1.3.0-2) unstable; urgency=low
+
+  * Team upload.
+
+  [ Steve Langasek ]
+  * Build for multiarch.
+
+  [ Julien Cristau ]
+  * Bump Standards-Version to 3.9.2.
+
+ -- Julien Cristau <jcristau@debian.org>  Sat, 11 Jun 2011 15:47:31 +0200
+
+libxext (2:1.3.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update debian/copyright from upstream COPYING.
+  * Bump x11proto-xext-dev build-dep.
+  * Bump xorg-sgml-doctools build-dep, add xsltproc.
+  * Bump xutils-dev build-dep.
+  * Use xorg-sgml-doctool's copy of xorg.css.
+  * Don't install *.db yet, keep that for later.
+  * Update symbols file for new *Fence symbols.
+  * Bump shlibs accordingly.
+  * Wrap Depends.
+  * Get rid of the Replaces on x11proto-xext-dev, that was long ago.
+
+ -- Cyril Brulebois <kibi@debian.org>  Sun, 08 May 2011 21:15:49 +0200
+
+libxext (2:1.2.0-2) unstable; urgency=low
+
+  * Remove Brice Goglin and David Nusinow from Uploaders.  Thanks for your
+    work!
+  * Bump Standards-Version to 3.9.1 (no changes).
+  * Upload to unstable.
+
+ -- Julien Cristau <jcristau@debian.org>  Mon, 07 Feb 2011 22:19:09 +0100
+
+libxext (2:1.2.0-1) experimental; urgency=low
+
+  * New upstream release:
+    - include/X11/extensions/lbx{buf,bufstr,image}.h disappeared,
+      functions are found in liblbxutil.
+  * Update debian/copyright from upstream COPYING.
+  * Bump xutils-dev build-dep for new macros.
+  * Pass --with-xmlto and --without-fop to configure.
+  * Add xmlto, xorg-sgml-doctools, and w3m build-dep.
+  * Switch dh_install from --list-missing to --fail-missing for added
+    safety.
+  * Get rid of *.xml files before running dh_install.
+  * Exclude libXext.la in dh_install call.
+  * Ship *.html, *.txt, *.css in libxext-dev.
+
+ -- Cyril Brulebois <kibi@debian.org>  Fri, 14 Jan 2011 05:39:31 +0100
+
 libxext (2:1.1.2-1) unstable; urgency=low
 
   * New upstream release.

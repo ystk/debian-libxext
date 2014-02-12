@@ -1,5 +1,4 @@
 /*
- * $Xorg: XShape.c,v 1.4 2001/02/09 02:03:49 xorgcvs Exp $
  *
 Copyright 1989, 1998  The Open Group
 
@@ -25,9 +24,7 @@ in this Software without prior written authorization from The Open Group.
  *
  * Author:  Keith Packard, MIT X Consortium
  */
-/* $XFree86: xc/lib/Xext/XShape.c,v 1.3 2002/10/16 00:37:27 dawes Exp $ */
-#define NEED_EVENTS
-#define NEED_REPLIES
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -38,10 +35,12 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/extensions/extutil.h>
 #include <X11/extensions/shape.h>
 #include <X11/extensions/shapeproto.h>
+#include <limits.h>
+#include "eat.h"
 
 static XExtensionInfo _shape_info_data;
 static XExtensionInfo *shape_info = &_shape_info_data;
-static /* const */ char *shape_extension_name = SHAPENAME;
+static const char *shape_extension_name = SHAPENAME;
 
 #define ShapeCheckExtension(dpy,i,val) \
   XextCheckExtension (dpy, i, shape_extension_name, val)
@@ -73,7 +72,7 @@ static /* const */ XExtensionHooks shape_extension_hooks = {
 };
 
 static XEXT_GENERATE_FIND_DISPLAY (find_display, shape_info,
-				   shape_extension_name, 
+				   shape_extension_name,
 				   &shape_extension_hooks,
 				   ShapeNumberEvents, NULL)
 
@@ -205,7 +204,7 @@ void XShapeCombineRegion(
 
     LockDisplay(dpy);
     GetReq(ShapeRectangles, req);
-    xr = (XRectangle *) 
+    xr = (XRectangle *)
     	_XAllocScratch(dpy, (unsigned long)(r->numRects * sizeof (XRectangle)));
     for (pr = xr, pb = r->rects, i = r->numRects; --i >= 0; pr++, pb++) {
         pr->x = pb->x1;
@@ -357,7 +356,7 @@ Status XShapeQueryExtents (
     XExtDisplayInfo *info = find_display (dpy);
     xShapeQueryExtentsReply	    rep;
     register xShapeQueryExtentsReq *req;
-    
+
     ShapeCheckExtension (dpy, info, 0);
 
     LockDisplay (dpy);
@@ -445,7 +444,7 @@ XRectangle *XShapeGetRectangles (
     xShapeGetRectanglesReply	    rep;
     XRectangle			    *rects;
     xRectangle			    *xrects;
-    int				    i;
+    unsigned int		    i;
 
     ShapeCheckExtension (dpy, info, (XRectangle *)NULL);
 
@@ -463,20 +462,23 @@ XRectangle *XShapeGetRectangles (
     *count = rep.nrects;
     *ordering = rep.ordering;
     rects = NULL;
-    if (*count) {
-	xrects = (xRectangle *) Xmalloc (*count * sizeof (xRectangle));
-	rects = (XRectangle *) Xmalloc (*count * sizeof (XRectangle));
+    if (rep.nrects) {
+	if (rep.nrects < (INT_MAX / sizeof (XRectangle))) {
+	    xrects = Xmalloc (rep.nrects * sizeof (xRectangle));
+	    rects = Xmalloc (rep.nrects * sizeof (XRectangle));
+	} else {
+	    xrects = NULL;
+	    rects = NULL;
+	}
 	if (!xrects || !rects) {
-	    if (xrects)
-		Xfree (xrects);
-	    if (rects)
-		Xfree (rects);
-	    _XEatData (dpy, *count * sizeof (xRectangle));
+	    Xfree (xrects);
+	    Xfree (rects);
+	    _XEatDataWords (dpy, rep.length);
 	    rects = NULL;
 	    *count = 0;
 	} else {
-	    _XRead (dpy, (char *) xrects, *count * sizeof (xRectangle));
-	    for (i = 0; i < *count; i++) {
+	    _XRead (dpy, (char *) xrects, rep.nrects * sizeof (xRectangle));
+	    for (i = 0; i < rep.nrects; i++) {
 	    	rects[i].x = (short) cvtINT16toInt (xrects[i].x);
 	    	rects[i].y = (short) cvtINT16toInt (xrects[i].y);
 	    	rects[i].width = xrects[i].width;
